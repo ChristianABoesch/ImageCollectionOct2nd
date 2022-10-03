@@ -23,10 +23,23 @@
         $("img:nth-of-type(" + (currentSlide+1) + ")").stop().fadeIn(1000);
         return;
       }
+
+      // Replace your play() function with this code. 
+      var audio
+      var intervalId;
       function play() {
-        var audio = new Audio('music/Riding Away.m4a');
+        audio = new Audio('music/Riding Away.m4a');
         audio.play();
+        intervalId = window.setInterval(function(){
+          goNext();
+        }, 4000);
       }
+
+      function stop(){
+        clearInterval(intervalId);
+        audio.pause();
+      }
+
      </script>
      <style>
       img{
@@ -46,6 +59,7 @@
   </head>
 
   <button onclick="play()">Music for a more digestible reading experience</button>
+  <button onclick="stop()">Stop</button>
 
   <h1>A comic book about monkeys ... and cars.</h1>
 
